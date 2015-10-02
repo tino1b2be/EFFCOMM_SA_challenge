@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace EFFCOMM_SA_challenge.ViewsLayer
 {
+    /// <summary>
+    /// Windows form to handle deleting of models
+    /// </summary>
     public partial class DeleteModelForm : Form
     {
         private Controller controller;
@@ -27,11 +30,17 @@ namespace EFFCOMM_SA_challenge.ViewsLayer
             try
             {
                 controller.delModel((int)modID.Value);
-                this.Close();
+                MessageBox.Show("Model successfully deleted.",
+                    "Success!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (DatabaseException err) // catch any databse erros
             {
-                MessageBox.Show(err.error);
+                MessageBox.Show(err.error,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
         }
     }

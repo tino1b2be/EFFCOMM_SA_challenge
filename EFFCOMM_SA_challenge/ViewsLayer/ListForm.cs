@@ -13,6 +13,9 @@ using System.Windows.Forms;
 
 namespace EFFCOMM_SA_challenge.ViewsLayer
 {
+    /// <summary>
+    /// Windows form for displaying the Models/Securities
+    /// </summary>
     public partial class ListForm : Form
     {
         private string type;
@@ -51,7 +54,10 @@ namespace EFFCOMM_SA_challenge.ViewsLayer
 
             if (securities == null)
             {
-                MessageBox.Show("There are no Securities in the Database");
+                MessageBox.Show("There are no Securities in the Database",
+                    "Attention!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
                 this.Close();
             }
             else
@@ -84,7 +90,10 @@ namespace EFFCOMM_SA_challenge.ViewsLayer
             Collection<Model> models = controller.getAllModels();
             if (models == null)
             {
-                MessageBox.Show("There are no Models in the Database");
+                MessageBox.Show("There are no Models in the Database",
+                    "Attention!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
                 this.Close();
             }
             else

@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace EFFCOMM_SA_challenge.ViewsLayer
 {
+    /// <summary>
+    /// Windows form for handling creating of new models
+    /// </summary>
     public partial class NewModelForm : Form
 
     {
@@ -36,11 +39,17 @@ namespace EFFCOMM_SA_challenge.ViewsLayer
             try
             {
                 controller.addModel(model);
-                MessageBox.Show("Model " + model.modelID + " has been successfully added.", "Sucess!");
+                MessageBox.Show("Model " + model.modelID + " has been successfully added.",
+                    "Success!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (DatabaseException modelException)
             {
-                MessageBox.Show(modelException.error);
+                MessageBox.Show(modelException.error,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
         }
 

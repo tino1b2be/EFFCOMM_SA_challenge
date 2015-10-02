@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace EFFCOMM_SA_challenge.ViewsLayer
 {
+    /// <summary>
+    /// Windows form to handle creatino of new Securities
+    /// </summary>
     public partial class NewSecurityForm : Form
     {
         private Controller controller;
@@ -30,11 +33,17 @@ namespace EFFCOMM_SA_challenge.ViewsLayer
             try
             {
                 controller.addSecurity(sec);
-                MessageBox.Show("New Security added.", "Successs");
+                MessageBox.Show("New Security added.",
+                    "Success!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (DatabaseException modelException)
             {
-                MessageBox.Show(modelException.error);
+                MessageBox.Show(modelException.error,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
         }
 

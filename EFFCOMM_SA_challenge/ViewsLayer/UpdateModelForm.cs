@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace EFFCOMM_SA_challenge.ViewsLayer
 {
+    /// <summary>
+    /// Windows form to handle updates of existing models
+    /// </summary>
     public partial class UpdateModelForm : Form
     {
         private Controller controller;
@@ -33,10 +36,17 @@ namespace EFFCOMM_SA_challenge.ViewsLayer
             {
                 controller.updateModel(model);
                 this.Close();
+                MessageBox.Show("Model seccessfully updated.",
+                    "Success!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (DatabaseException modelException)
             {
-                MessageBox.Show(modelException.error);
+                MessageBox.Show(modelException.error,
+                      "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
         }
     }

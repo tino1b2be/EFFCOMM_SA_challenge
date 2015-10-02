@@ -13,8 +13,7 @@ namespace EFFCOMM_SA_challenge.ModelsLayer
 {
     public class ModelsDB : Database
     {
-        public ModelsDB()
-            : base()    // constructor call to super class
+        public ModelsDB(): base()
         {
             ;
         }
@@ -189,32 +188,78 @@ namespace EFFCOMM_SA_challenge.ModelsLayer
         }
 
         /// <summary>
+        /// Method to delete a model from the DB
+        /// This will also delete the model's entries in other tables
+        /// </summary>
+        /// <param name="modID"></param>
+        internal void deleteModel(int modID)
+        {
+            // delete from Models
+            string selectString1 = "DELETE FROM Models " +
+                "WHERE ModelID = " + modID;
+            
+            // delete from ModelSecurity
+            string selectString2 = "DELETE FROM ModelSecurity " +
+                "WHERE ModelID = " + modID;
+
+            UpdateDataSource(new SqlCommand(selectString2, cnMain));
+            UpdateDataSource(new SqlCommand(selectString1, cnMain));
+
+        }
+
+        /// <summary>
+        /// Methdo to delete a Security from the Database
+        /// this will also delete all existing entries of the security
+        /// </summary>
+        /// <param name="secID"></param>
+        internal void deleteSecurity(int secID)
+        {
+            // delete from Models
+            string selectString1 = "DELETE FROM Securities WHERE SecurityID = " + secID;
+            // delete from ModelSecurity
+            string selectString2 = "DELETE FROM ModelSecurity WHERE SecurityID = " + secID;
+
+            UpdateDataSource(new SqlCommand(selectString2, cnMain));
+            UpdateDataSource(new SqlCommand(selectString1, cnMain));
+        }
+
+        /// <summary>
         /// Method to update an existing model security
         /// </summary>
         /// <param name="modSec"></param>
         internal void updateModelSecurity(ModelSecurity modSec)
         {
-            throw new NotImplementedException();
+            string selectString = "UPDATE ModelSecurity SET " + 
+                "Percentage = " + modSec.percentage + 
+                " WHERE ModelID = " + modSec.modelID + " AND SecurityID = " + modSec.securityID;
+
+            UpdateDataSource(new SqlCommand(selectString, cnMain));
         }
 
+        /// <summary>
+        /// Method to update an existing Model
+        /// </summary>
+        /// <param name="model">Model to update with</param>
         internal void updateModel(Model model)
         {
-            throw new NotImplementedException();
+            string selectString = "UPDATE Models SET " +
+                "ModelName = '" + model.modelName + "', ModelDescription = '" + model.modelDesc +
+                "' WHERE ModelID = " + model.modelID;
+
+            UpdateDataSource(new SqlCommand(selectString, cnMain));
         }
 
+        /// <summary>
+        /// Method to update an existing Security
+        /// </summary>
+        /// <param name="sec">new security to update with</param>
         internal void updateSecurity(Security sec)
         {
-            throw new NotImplementedException();
-        }
+            string selectString = "UPDATE Securities SET " +
+                "SecurityName = '" + sec.securityName + "', SecurityPrice = " + sec.securityPrice +
+                " WHERE SecurityID = " + sec.securityID;
 
-        internal void deleteModel(int modID)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void deleteSecurity(int secID)
-        {
-            throw new NotImplementedException();
+            UpdateDataSource(new SqlCommand(selectString, cnMain));
         }
 
     }

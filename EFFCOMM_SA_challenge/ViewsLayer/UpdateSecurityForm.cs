@@ -11,10 +11,18 @@ using System.Windows.Forms;
 
 namespace EFFCOMM_SA_challenge.ViewsLayer
 {
+    /// <summary>
+    /// Windows Form to handle updating of existing securities.
+    /// </summary>
     public partial class UpdateSecurityForm : Form
     {
         private Controller controller;        
 
+        /// <summary>
+        /// Methdo to update an existing security.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addSec_Click(object sender, EventArgs e)
         {
             Security sec = new Security();
@@ -24,11 +32,19 @@ namespace EFFCOMM_SA_challenge.ViewsLayer
             try
             {
                 controller.updateSecurity(sec);
+                MessageBox.Show("Security Successfully deleted.",
+                    "Success!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
                 this.Close();
             }
-            catch (DatabaseException modelException)
+            catch (DatabaseException err)
             {
-                MessageBox.Show(modelException.error);
+                MessageBox.Show(err.error,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
         }
 

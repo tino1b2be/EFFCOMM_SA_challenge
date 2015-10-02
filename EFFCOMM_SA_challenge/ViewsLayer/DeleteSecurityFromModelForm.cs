@@ -9,8 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace EFFCOMM_SA_challenge.ViewsLayer
 {
+    /// <summary>
+    /// Windows form for handling deletion of securities from an existing model
+    /// </summary>
     public partial class DeleteSecurityFromModelForm : Form
     {
         private Controller controller;
@@ -33,7 +37,10 @@ namespace EFFCOMM_SA_challenge.ViewsLayer
             }
             catch (DatabaseException err) // catch any databse errros
             {
-                MessageBox.Show(err.error, "ERROR!");
+                MessageBox.Show(err.error,
+                   "Error",
+                   MessageBoxButtons.OK,
+                   MessageBoxIcon.Exclamation);
             }
         }
 

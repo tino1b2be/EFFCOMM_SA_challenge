@@ -12,9 +12,12 @@ using System.Windows.Forms;
 
 namespace EFFCOMM_SA_challenge
 {
+    /// <summary>
+    /// Main Windows for the system GUI
+    /// </summary>
     public partial class MainForm : Form
     {
-        private Controller controller;
+        private Controller controller; // controller to be used in the program
         public MainForm()
         {
             InitializeComponent();

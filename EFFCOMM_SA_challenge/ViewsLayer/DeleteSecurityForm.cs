@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace EFFCOMM_SA_challenge.ViewsLayer
 {
+    /// <summary>
+    /// Windows form to handle deleting securities from the DB
+    /// </summary>
     public partial class DeleteSecurityForm : Form
     {
         private Controller controller;
@@ -26,11 +29,17 @@ namespace EFFCOMM_SA_challenge.ViewsLayer
             try
             {
                 controller.delSec((int)secID.Value);
-                this.Close();
+                MessageBox.Show("Security successfully deleted.",
+                    "Success!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (DatabaseException err) // catch any databse erros
             {
-                MessageBox.Show(err.error);
+                MessageBox.Show(err.error,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
         }
     }

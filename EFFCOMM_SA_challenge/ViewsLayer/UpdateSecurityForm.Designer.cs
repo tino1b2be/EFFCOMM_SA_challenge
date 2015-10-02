@@ -79,7 +79,7 @@
             this.addSec.Name = "addSec";
             this.addSec.Size = new System.Drawing.Size(75, 23);
             this.addSec.TabIndex = 20;
-            this.addSec.Text = "Add Security";
+            this.addSec.Text = "Update Security";
             this.addSec.UseVisualStyleBackColor = true;
             this.addSec.Click += new System.EventHandler(this.addSec_Click);
             // 
